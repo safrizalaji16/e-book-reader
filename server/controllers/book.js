@@ -1,13 +1,14 @@
+const { Book } = require("../models");
+
 class Controller {
     static async uploadFiles(req, res, next) {
         try {
-            let newData = req.files.map(e => {
-                e.userId = req.User.id
-                e.userEmail = req.User.email
+            let data = req.files.map(e => {
+                e.UserId = req.User.id
                 return e
             })
-            console.log(newData, "<<<<<<<<");
-            res.status(200).json({ message: "Successfully uploaded files" });
+            await Book.bulkCreate(data)
+            res.status(200).json({ msg: "Successfully uploaded books" });
         } catch (err) {
             next(err)
         }
