@@ -17,11 +17,6 @@ module.exports = {
                 msg = "Please Login First";
                 break;
 
-            case "Customer Not Found":
-                status = 404;
-                msg = "Customer Not Found";
-                break;
-
             case "Error email or password":
                 status = 401;
                 msg = "Error invalid email or password";
