@@ -1,17 +1,17 @@
-// const { Order } = require("../models");
+const { Book } = require("../models");
 
 module.exports = {
   async authorizationOwner(req, res, next) {
     try {
       const { id } = req.params;
       const UserId = req.User.id;
-    //   const order = await Order.findByPk(id);
+      const book = await Book.findByPk(id);
 
-    //   if (order.UserId !== UserId) {
-    //     throw {
-    //       name: "Forbidden",
-    //     };
-    //   }
+      if (book.UserId !== UserId) {
+        throw {
+          name: "Forbidden",
+        };
+      }
 
       next();
     } catch (err) {

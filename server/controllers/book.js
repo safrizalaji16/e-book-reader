@@ -19,8 +19,17 @@ class Controller {
             const { id } = req.params;
             const book = await Book.findByPk(id);
 
-            // res.json(book)
-            res.download(book.path); // video[0].file.path is the absolute path to the file
+            res.status(200).download(book.path);
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    static async getAllBooks(req, res, next) {
+        try {
+            const books = await Book.findAll({ where: { UserId: req.User.id } });
+
+            res.status(200).json(books);
         } catch (err) {
             next(err)
         }
