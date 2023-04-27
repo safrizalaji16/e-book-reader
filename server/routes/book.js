@@ -16,10 +16,7 @@ const upload = multer({ storage });
 
 router
     .use(authentication)
-    .post("/upload_books", upload.array("files"), Controller.uploadFiles)
-    .get('/download', async (req, res, next) => {
-        const video = await UserToUploadMapping.find({});
-        res.download(video[0].file.path); // video[0].file.path is the absolute path to the file
-    })
+    .post("/upload", upload.array("files"), Controller.uploadFiles)
+    .get("/download/:id", Controller.downloadFile)
 
 module.exports = router;

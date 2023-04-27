@@ -13,6 +13,18 @@ class Controller {
             next(err)
         }
     }
+
+    static async downloadFile(req, res, next) {
+        try {
+            const { id } = req.params;
+            const book = await Book.findByPk(id);
+
+            // res.json(book)
+            res.download(book.path); // video[0].file.path is the absolute path to the file
+        } catch (err) {
+            next(err)
+        }
+    }
 }
 
 module.exports = Controller;

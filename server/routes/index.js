@@ -4,6 +4,6 @@ const bookRouter = require("./book");
 
 router
     .use(userRouter)
-    .use(bookRouter);
+    .use("/books", bookRouter);
 
 module.exports = router;
