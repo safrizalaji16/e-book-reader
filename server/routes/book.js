@@ -4,7 +4,7 @@ const { authentication } = require("../middlewares/authentication");
 const router = require("express").Router();
 const path = require('path');
 const { authorizationOwner } = require("../middlewares/authorization");
-const uploadFolder = path.join(__dirname, "books");
+const uploadFolder = path.join(__dirname, "../books");
 const storage = multer.diskStorage({
     destination: uploadFolder,
     filename: (req, file, cb) => {
@@ -20,5 +20,6 @@ router
     .get("/", Controller.getAllBooks)
     .post("/upload", upload.array("files"), Controller.uploadFiles)
     .get("/download/:id", authorizationOwner, Controller.downloadFile)
+    .delete("/:id", authorizationOwner, Controller.deleteBook)
 
 module.exports = router;

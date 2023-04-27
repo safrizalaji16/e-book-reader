@@ -7,6 +7,12 @@ module.exports = {
       const UserId = req.User.id;
       const book = await Book.findByPk(id);
 
+      if (!book) {
+        throw {
+          name: "Book Not Found",
+        };
+      }
+
       if (book.UserId !== UserId) {
         throw {
           name: "Forbidden",

@@ -26,6 +26,11 @@ module.exports = {
                 status = 403;
                 msg = "You have no access";
                 break;
+
+            case "Book Not Found":
+                status = 404;
+                msg = "Book Not Found";
+                break;
         }
 
         res.status(status).json({ msg });
