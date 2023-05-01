@@ -1,37 +1,49 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Books', {
+    await queryInterface.createTable("Books", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       fieldname: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       originalname: {
-        type: Sequelize.STRING
-      },
-      encoding: {
-        type: Sequelize.STRING
-      },
-      mimetype: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       destination: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       filename: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       path: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
-      size: {
-        type: Sequelize.INTEGER
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      author: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      cover: {
+        type: Sequelize.STRING,
+      },
+      url: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      publicId: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       UserId: {
         type: Sequelize.INTEGER,
@@ -52,10 +64,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date(),
-      }
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Books');
-  }
+    await queryInterface.dropTable("Books");
+  },
 };

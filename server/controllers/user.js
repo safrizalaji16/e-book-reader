@@ -3,31 +3,31 @@ const { createToken } = require("../helpers/jwt");
 const { User } = require("../models");
 
 class Controller {
-    static async login(req, res, next) {
-        try {
-            const { email, password } = req.body;
-            console.log(email, password);
-            if (!email || !password) {
-                throw {
-                    name: "Error email or password",
-                };
-            }
+  static async login(req, res, next) {
+    try {
+      const { email, password } = req.body;
 
-            const findUser = await User.findOne({ where: { email } });
+      if (!email || !password) {
+        throw {
+          name: "Error email or password",
+        };
+      }
 
-            if (!findUser || !comparePassword(password, findUser.password)) {
-                throw {
-                    name: "Error email or password",
-                };
-            }
+      const findUser = await User.findOne({ where: { email } });
 
-            const access_token = createToken({ id: findUser.id });
+      if (!findUser || !comparePassword(password, findUser.password)) {
+        throw {
+          name: "Error email or password",
+        };
+      }
 
-            res.status(200).json({ access_token });
-        } catch (err) {
-            next(err);
-        }
+      const access_token = createToken({ id: findUser.id });
+
+      res.status(200).json({ access_token, name: findUser.name });
+    } catch (err) {
+      next(err);
     }
+  }
 }
 
 module.exports = Controller;
