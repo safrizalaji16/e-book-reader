@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         element: <BookListPage />,
       },
       {
-        path: "/read-books",
+        path: "/read-books/:fileId",
         element: <ReadingPage />,
       },
     ],

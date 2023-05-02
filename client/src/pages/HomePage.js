@@ -4,12 +4,16 @@ import LibraryImg from "../assets/undraw_Bibliophile_re_xarc.png";
 
 export default function HomePage() {
   const name = localStorage.getItem("name");
+  const role = localStorage.getItem("role");
 
   return (
     <Container className="my-5">
       <Row className="justify-content-center align-items-center">
         <Col md={6} className="text-center">
-          <h1 className="display-4 mb-4">Welcome, {name}!</h1>
+          <h1 className="display-4 mb-4">
+            Welcome, <strong>{name}</strong>! You are logged in as a{" "}
+            <strong>{role}</strong>.
+          </h1>
           <p className="lead mb-5">
             The library awaits you, full of treasures to be discovered. Take
             your time and enjoy your reading to the fullest!

@@ -23,7 +23,9 @@ class Controller {
 
       const access_token = createToken({ id: findUser.id });
 
-      res.status(200).json({ access_token, name: findUser.name });
+      res
+        .status(200)
+        .json({ access_token, name: findUser.name, role: findUser.role });
     } catch (err) {
       next(err);
     }

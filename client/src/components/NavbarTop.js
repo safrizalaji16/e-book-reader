@@ -43,20 +43,14 @@ export default function NavbarTop() {
         <Navbar.Collapse
           id="navbarScroll"
           className="d-flex justify-content-center align-items-center"
-        >
-          {/* <Form className="my-3 d-flex justify-content-center align-items-center w-50">
-            <FormControl
-              type="search"
-              placeholder="Search"
-              className="me-1"
-              aria-label="Search"
-            />
-            <Button variant="primary" className="px-4">
-              Search
-            </Button>
-          </Form> */}
-        </Navbar.Collapse>
+        ></Navbar.Collapse>
         <Nav className="ms-auto my-2 my-lg-0" navbarScroll>
+          <Nav.Link as={Link} to={"/"}>
+            Home
+          </Nav.Link>
+          <Nav.Link as={Link} to={"/book-lists"}>
+            Book Lists
+          </Nav.Link>
           <Dropdown className="ms-3">
             <Dropdown.Toggle
               variant="outline-primary"

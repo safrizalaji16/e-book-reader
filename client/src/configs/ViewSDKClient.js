@@ -28,7 +28,7 @@ class ViewSDKClient {
     return this.readyPromise;
   }
 
-  previewFile(divId, viewerConfig) {
+  previewFile(divId, url, fileName, fileId, viewerConfig) {
     const config = {
       /* Pass your registered client id */
       clientId: "8c0cd670273d451cbc9b351b11d22318",
@@ -48,7 +48,7 @@ class ViewSDKClient {
         content: {
           /* Location of file where it is hosted */
           location: {
-            url: "https://documentservices.adobe.com/view-sdk-demo/PDFs/Bodea Brochure.pdf",
+            url,
             /*
                     If the file URL requires some additional headers, then it can be passed as follows:-
                     headers: [
@@ -63,9 +63,9 @@ class ViewSDKClient {
         /* Pass meta data of file */
         metaData: {
           /* file name */
-          fileName: "Bodea Brochure.pdf",
+          fileName,
           /* file ID */
-          id: "6d07d124-ac85-43b3-a867-36930f502ac6",
+          id: fileId,
         },
       },
       viewerConfig

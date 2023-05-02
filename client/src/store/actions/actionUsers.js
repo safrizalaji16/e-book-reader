@@ -8,6 +8,7 @@ export const login = (input) => {
       const { data } = await axios.post(`${baseUrl}/login`, input);
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("name", data.name);
+      localStorage.setItem("role", data.role);
 
       Swal.fire({
         icon: "success",

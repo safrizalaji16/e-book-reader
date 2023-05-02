@@ -7,13 +7,14 @@ import {
   fetchOneBook,
 } from "../store/actions/actionBooks";
 import { useEffect, useState } from "react";
-// import ViewSDKClient from "../configs/ViewSDKClient";
+import { useNavigate } from "react-router-dom";
 
 export default function BookCard({ book }) {
   const [showEditBookModal, setShowEditBookModal] = useState(false);
   const dispatch = useDispatch();
   const handleEditBookClick = () => setShowEditBookModal(true);
   const handleEditBookClose = () => setShowEditBookModal(false);
+  const navigate = useNavigate();
 
   function handleDeleteBook() {
     dispatch(deleteBook(book.id));
@@ -56,45 +57,11 @@ export default function BookCard({ book }) {
     dispatch(downloadBook(book.id, book.filename));
   }
 
-  // const viewSDKClient = new ViewSDKClient();
-  // const isValidPDF = (file) => {
-  //   if (file.type === "application/pdf") {
-  //     return true;
-  //   }
-  //   if (file.type === "" && file.name) {
-  //     const fileName = file.name;
-  //     const lastDotIndex = fileName.lastIndexOf(".");
-  //     if (
-  //       lastDotIndex === -1 ||
-  //       fileName.substr(lastDotIndex).toUpperCase() !== "PDF"
-  //     )
-  //       return false;
-  //     return true;
-  //   }
-  //   return false;
-  // };
-
-  // const readFile = (event) => {
-  //   event.persist();
-  //   viewSDKClient.ready().then(() => {
-  //     const files = book;
-  //     console.log(files);
-  //     if (files.length > 0 && isValidPDF(files[0])) {
-  //       const fileName = files[0].name;
-  //       const reader = new FileReader();
-  //       reader.onloadend = (e) => {
-  //         const filePromise = Promise.resolve(e.target.result);
-  //         /* Helper function to render the file using PDF Embed API. */
-  //         viewSDKClient.previewFileUsingFilePromise(
-  //           "pdf-div",
-  //           filePromise,
-  //           fileName
-  //         );
-  //       };
-  //       reader.readAsArrayBuffer(files[0]);
-  //     }
-  //   });
-  // };
+  function readFile() {
+    navigate(
+      `/read-books/${book.publicId}?url=${book.url}&fileName=${book.filename}`
+    );
+  }
 
   return (
     <Col className="mb-4">
@@ -120,10 +87,7 @@ export default function BookCard({ book }) {
             {book.author}
           </Card.Subtitle>
           <div className="d-flex justify-content-around align-items-center mt-3">
-            <Button
-              variant="primary"
-              // onClick={readFile}
-            >
+            <Button variant="primary" onClick={readFile}>
               Read
             </Button>
             <Dropdown>
