@@ -94,7 +94,7 @@ class ViewSDKClient {
         /* Pass meta data of file */
         metaData: {
           /* file name */
-          fileName: fileName,
+          fileName,
         },
       },
       {}

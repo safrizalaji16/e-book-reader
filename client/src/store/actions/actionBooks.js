@@ -27,25 +27,6 @@ export const fetchBooks = () => {
   };
 };
 
-// export const getBookFile = (filename) => {
-//   return async (dispatch, getState) => {
-//     try {
-//       const response = await axios(`${baseUrl}/books/${filename}`, {
-//         headers: { access_token: localStorage.getItem("access_token") },
-//         responseType: "blob",
-//       });
-
-//       const fileURL = window.URL.createObjectURL(new Blob([response.data]));
-
-//       // melakukan sesuatu dengan fileURL, seperti menampilkannya di browser
-//       return fileURL;
-//     } catch (error) {
-//       console.error("Error:", error);
-//       return null;
-//     }
-//   };
-// };
-
 export const fetchOneBook = (id) => {
   return async (dispatch, getState) => {
     try {
